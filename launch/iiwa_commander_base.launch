@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--  This loads the robot description  -->
+  <include file="$(find iiwa_moveit)/launch/moveit_planning_execution.launch">
+    <arg name="sim" value="true"/>
+    <arg name="model" value="iiwa14"/>
+  </include>
+    
+
+  
+</launch>

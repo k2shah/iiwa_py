@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Parameters to pass to the ROS node -->
+  <arg name="move_group" default="manipulator"/>
+  <arg name="ee_link" default="iiwa_link_ee"/>
+  <arg name="plan_time" default="0.5"/>
+  
+  <!--  This loads the robot description  -->
+  <include file="$(find iiwa_moveit)/launch/moveit_planning_execution.launch">
+    <arg name="sim" value="true"/>
+    <arg name="model" value="iiwa14"/>
+  </include>
+    
+  <!-- Here we call the ROS node we have written, with the parameters on top   -->
+  <node ns="iiwa" name="commander" pkg="iiwa_opp" type="iiwa_moveit_command.py" respawn="false" output="screen">
+    <param name="move_group" value="$(arg move_group)"/>
+    <param name="ee_link" value="$(arg ee_link)"/>
+    <param name="plan_time" value="$(arg plan_time)"/>
+  </node>
+  
+</launch>
